@@ -1,5 +1,5 @@
 /* =========================================================
-   PLANORA — script.js
+   KASHTRO — script.js
    Vanilla JS only. No dependencies.
    Shared across index.html, checkout.html, privacy-policy.html,
    terms.html and refund-policy.html — every block below checks
@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
      survive refreshes and carry across pages (e.g. into
      checkout.html).
      ========================================================= */
-  var STORAGE_CART = 'planora_cart';
-  var STORAGE_FAVORITES = 'planora_favorites';
+  var STORAGE_CART = 'kashtro_cart';
+  var STORAGE_FAVORITES = 'kashtro_favorites';
 
   function readStorage(key, fallback) {
     try {
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var value = emailInput.value.trim();
       if (value === '') { showFormMessage('Please enter your email address.', true); emailInput.focus(); return; }
       if (!isValidEmail(value)) { showFormMessage('That email address doesn\u2019t look right. Please check it.', true); emailInput.focus(); return; }
-      showFormMessage('You\u2019re on the list. Welcome to Planora.', false);
+      showFormMessage('You\u2019re on the list. Welcome to Kashtro.', false);
       form.reset();
     });
   }
