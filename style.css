@@ -1,5 +1,5 @@
 /* =========================================================
-   PLANORA — Stylesheet
+   KASHTRO — Stylesheet
    Design language: Apple x Notion x minimal Scandinavian.
    Palette: black, off-white, soft beige. Generous spacing.
    ========================================================= */
@@ -444,7 +444,7 @@ section {
   font-size: 1.15rem;
 }
 
-/* ---------- 9. Why Planora ---------- */
+/* ---------- 9. Why Kashtro ---------- */
 .why-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
