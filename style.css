@@ -1353,3 +1353,11 @@ body.no-scroll { overflow: hidden; }
 .contact-note{
   margin-top:20px;
 }
+
+
+/* Remove the default blue tap flash on mobile */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
