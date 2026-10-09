@@ -1361,3 +1361,12 @@ a,
 [role="button"] {
   -webkit-tap-highlight-color: transparent;
 }
+
+
+/* Prevent tap and focus colour flashes on buttons */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  outline-color: transparent;
+}
