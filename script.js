@@ -310,6 +310,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   renderCart();
+   
+/* Prevent checkout when the cart is empty */
+document.querySelectorAll('a[href="checkout.html"]').forEach(function (link) {
+  link.addEventListener('click', function (e) {
+    if (cartTotalCount() === 0) {
+      e.preventDefault();
+      showToast('Your cart is empty. Please add a product before proceeding to checkout.');
+    }
+  });
+});
 
   /* =========================================================
      9. FAVORITES (localStorage)
