@@ -1370,3 +1370,17 @@ a,
   -webkit-tap-highlight-color: transparent;
   outline-color: transparent;
 }
+
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
