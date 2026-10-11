@@ -1384,3 +1384,11 @@ a,
   object-fit: contain;
   flex-shrink: 0;
 }
+
+
+.logo-divider {
+  width: 1px;
+  height: 38px;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
