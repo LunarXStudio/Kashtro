@@ -1392,3 +1392,11 @@ a,
   background-color: currentColor;
   flex-shrink: 0;
 }
+
+.explore-coming-soon {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #faf8f3;
+}
