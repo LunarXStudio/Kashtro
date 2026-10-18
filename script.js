@@ -455,7 +455,7 @@ document.querySelectorAll('a[href="checkout.html"]').forEach(function (link) {
     currentModalId = id;
     if (modalTitle) modalTitle.textContent = product.name;
     if (modalDescription) modalDescription.textContent = product.description;
-    if (modalPrice) modalPrice.textContent = formatRupees(product.price);
+    if (modalPrice) modalPrice.textContent = formatPrice(currency === 'USD' ? product.priceUSD : product.price, currency);
     if (modalAddToCart) modalAddToCart.setAttribute('data-current-id', id);
     if (modalFavBtn) {
       modalFavBtn.setAttribute('data-current-id', id);
