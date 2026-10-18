@@ -292,7 +292,7 @@ productCards.forEach(function (card) {
       cartItemsEl.appendChild(line);
     });
 
-    if (cartSubtotalEl) cartSubtotalEl.textContent = formatRupees(cartSubtotal());
+    if (cartSubtotalEl) cartSubtotalEl.textContent = formatPrice(cartSubtotal(), currency);
     updateCartBadge();
   }
 
