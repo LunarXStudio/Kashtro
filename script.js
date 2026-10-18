@@ -36,6 +36,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var cart = readStorage(STORAGE_CART, []);            // [{id, name, price, qty}]
   var currency = 'INR';
+  function detectCurrency() {
+  fetch('https://ipapi.co/json/')
+    .then(function (response) {
+      if (!response.ok) throw new Error('Country lookup failed');
+      return response.json();
+    })
+    .then(function (data) {
+      currency = data.country_code === 'IN' ? 'INR' : 'USD';
+
+      updateProductPrices();
+      renderCart();
+    })
+    .catch(function () {
+      currency = 'INR';
+      updateProductPrices();
+      renderCart();
+    });
+}
+
+detectCurrency();
   var favorites = readStorage(STORAGE_FAVORITES, []);  // [id, id, ...]
 
   function formatPrice(amount, currency) {
@@ -191,6 +211,19 @@ productCards.forEach(function (card) {
   };
 });
 
+   function updateProductPrices() {
+  document.querySelectorAll('[data-price-id]').forEach(function (priceEl) {
+    var product = products[priceEl.getAttribute('data-price-id')];
+
+    if (product) {
+      priceEl.textContent = formatPrice(
+        currency === 'USD' ? product.priceUSD : product.price,
+        currency
+      );
+    }
+  });
+   }
+
   /* =========================================================
      8. CART SYSTEM
      ========================================================= */
@@ -238,7 +271,7 @@ productCards.forEach(function (card) {
         '<div class="cart-line-thumb">' + escapeHtml(item.name) + '</div>' +
         '<div>' +
           '<div class="cart-line-name">' + escapeHtml(item.name) + '</div>' +
-          '<div class="cart-line-price">' + formatPrice(item.price, currency) + '</div>' +
+          '<div class="cart-line-price">' + formatPrice(currency === 'USD' && products[item.id] ? products[item.id].priceUSD : item.price, currency) + '</div>' +
           '<div class="cart-line-qty">' +
             '<button class="qty-btn" data-qty="-1" aria-label="Decrease quantity">\u2212</button>' +
             '<span>' + item.qty + '</span>' +
