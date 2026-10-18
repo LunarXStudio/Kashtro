@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var cart = readStorage(STORAGE_CART, []);            // [{id, name, price, qty}]
+  var currency = 'INR';
   var favorites = readStorage(STORAGE_FAVORITES, []);  // [id, id, ...]
 
   function formatPrice(amount, currency) {
