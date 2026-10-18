@@ -653,11 +653,11 @@ document.querySelectorAll('a[href="checkout.html"]').forEach(function (link) {
         cart.forEach(function (item) {
           var row = document.createElement('div');
           row.className = 'checkout-line';
-          row.innerHTML = '<span>' + escapeHtml(item.name) + ' \u00d7 ' + item.qty + '</span><span>' + formatRupees(item.price * item.qty) + '</span>';
+          row.innerHTML = '<span>' + escapeHtml(item.name) + ' \u00d7 ' + item.qty + '</span><span>' + formatPrice(currency === 'USD' && products[item.id] ? products[item.id].priceUSD * item.qty : item.price * item.qty, currency) + '</span>';
           checkoutItemsEl.appendChild(row);
         });
       }
-      if (checkoutTotalEl) checkoutTotalEl.textContent = formatRupees(cartSubtotal());
+      if (checkoutTotalEl) checkoutTotalEl.textContent = formatPrice(cartSubtotal(), currency);
     }
     renderCheckout();
 
