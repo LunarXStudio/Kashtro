@@ -37,8 +37,12 @@ document.addEventListener('DOMContentLoaded', function () {
   var cart = readStorage(STORAGE_CART, []);            // [{id, name, price, qty}]
   var favorites = readStorage(STORAGE_FAVORITES, []);  // [id, id, ...]
 
-  function formatRupees(amount) {
-    return '\u20B9' + Math.round(amount).toLocaleString('en-IN');
+  function formatPrice(amount, currency) {
+  if (currency === 'USD') {
+    return '$' + Number(amount).toFixed(2);
+  }
+
+  return '\u20B9' + Math.round(amount).toLocaleString('en-IN');
   }
 
   /* =========================================================
@@ -165,18 +169,26 @@ document.addEventListener('DOMContentLoaded', function () {
      duplicated between HTML and JS.
      ========================================================= */
   var productCards = document.querySelectorAll('.product-card[data-id]');
-  var products = {}; // id -> { id, name, price, description, collections[] }
+  var products = {};
 
-  productCards.forEach(function (card) {
-    var id = card.getAttribute('data-id');
-    var name = card.getAttribute('data-product');
-    var price = parseFloat(card.getAttribute('data-price')) || 0;
-    var collections = (card.getAttribute('data-collections') || '').split(' ').filter(Boolean);
-    var descEl = card.querySelector('.product-body p');
-    var description = descEl ? descEl.textContent.trim() : '';
+productCards.forEach(function (card) {
+  var id = card.getAttribute('data-id');
+  var name = card.getAttribute('data-product');
+  var price = parseFloat(card.getAttribute('data-price')) || 0;
+  var priceUSD = parseFloat(card.getAttribute('data-price-usd')) || 0;
+  var collections = (card.getAttribute('data-collections') || '').split(' ').filter(Boolean);
+  var descEl = card.querySelector('.product-body p');
+  var description = descEl ? descEl.textContent.trim() : '';
 
-    products[id] = { id: id, name: name, price: price, description: description, collections: collections };
-  });
+  products[id] = {
+    id: id,
+    name: name,
+    price: price,
+    priceUSD: priceUSD,
+    description: description,
+    collections: collections
+  };
+});
 
   /* =========================================================
      8. CART SYSTEM
@@ -219,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '<div class="cart-line-thumb">' + escapeHtml(item.name) + '</div>' +
         '<div>' +
           '<div class="cart-line-name">' + escapeHtml(item.name) + '</div>' +
-          '<div class="cart-line-price">' + formatRupees(item.price) + '</div>' +
+          '<div class="cart-line-price">' + formatPrice(item.price, currency) + '</div>' +
           '<div class="cart-line-qty">' +
             '<button class="qty-btn" data-qty="-1" aria-label="Decrease quantity">\u2212</button>' +
             '<span>' + item.qty + '</span>' +
