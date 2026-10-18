@@ -259,7 +259,10 @@ productCards.forEach(function (card) {
   }
 
   function renderCart() {
-    if (!cartItemsEl || !cartDrawer) return;
+    if (!cartItemsEl || !cartDrawer) {
+       updateCartBadge();
+       return;
+    }
     cartItemsEl.innerHTML = '';
 
     cartDrawer.classList.toggle('is-empty', cart.length === 0);
