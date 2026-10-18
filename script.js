@@ -208,8 +208,14 @@ productCards.forEach(function (card) {
     return cart.reduce(function (sum, item) { return sum + item.qty; }, 0);
   }
   function cartSubtotal() {
-    return cart.reduce(function (sum, item) { return sum + item.qty * item.price; }, 0);
-  }
+  return cart.reduce(function (sum, item) {
+    var price = currency === 'USD'
+      ? (products[item.id] ? products[item.id].priceUSD : item.price)
+      : item.price;
+
+    return sum + price * item.qty;
+  }, 0);
+       }
 
   function updateCartBadge() {
     if (!cartCountEl) return;
