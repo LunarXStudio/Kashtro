@@ -537,8 +537,10 @@ previewImages = previewImages[currentModalId] || [];
     img.style.cursor = 'zoom-in';
 
     // Tap the image to open the correct preview
-     img.addEventListener('click', function () {
-        window.open(new URL(imageSrc, document.baseURI).href, '_blank');
+     img.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        window.open(this.currentSrc || this.src, '_blank');
      });
 
     page.appendChild(img);
