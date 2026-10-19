@@ -522,7 +522,7 @@ document.querySelectorAll('a[href="checkout.html"]').forEach(function (link) {
 
     pages.forEach(function (p, i) { p.classList.toggle('active', i === currentPage); });
     dots.forEach(function (d, i) { d.classList.toggle('active', i === currentPage); });
-    if (galleryCaption) galleryCaption.textContent = 'Page ' + (currentPage + 1) + ' of ' + PAGE_COUNT;
+    if (galleryCaption) galleryCaption.textContent = 'Page ' + (currentPage + 1) + ' of ' + galleryViewport.querySelectorAll('.gallery-page').length;
   }
 
   if (galleryPrev) galleryPrev.addEventListener('click', function () { goToPage(currentPage - 1); });
