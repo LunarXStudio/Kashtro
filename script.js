@@ -449,31 +449,68 @@ document.querySelectorAll('a[href="checkout.html"]').forEach(function (link) {
   var currentModalId = null;
 
   function isModalOpen() { return productModal && productModal.classList.contains('open'); }
-
+   
   function buildGallery(productName) {
-    if (!galleryViewport || !galleryDots) return;
-    galleryViewport.innerHTML = '';
-    galleryDots.innerHTML = '';
+  if (!galleryViewport || !galleryDots) return;
 
-    for (var i = 0; i < PAGE_COUNT; i++) {
-      var page = document.createElement('div');
-      page.className = 'gallery-page' + (i === 0 ? ' active' : '');
-      page.innerHTML =
-        '<span>' + escapeHtml(productName) + '</span>' +
-        '<span class="page-lines"><span></span><span></span><span></span></span>' +
-        '<span style="font-size:0.75rem;">Page ' + (i + 1) + ' of ' + PAGE_COUNT + '</span>';
-      galleryViewport.appendChild(page);
+  galleryViewport.innerHTML = '';
+  galleryDots.innerHTML = '';
 
-      var dot = document.createElement('span');
-      if (i === 0) dot.classList.add('active');
-      dot.addEventListener('click', function (idx) {
-        return function () { goToPage(idx); };
-      }(i));
-      galleryDots.appendChild(dot);
+  // Real Weekly Planner preview images
+  var previewImages = [
+    'Weekly-preview-1.jpg',
+    'Weekly-preview-2.jpg',
+    'Weekly-preview-3.jpg',
+    'Weekly-preview-4.jpg',
+    'Weekly-preview-5.jpg',
+    'Weekly-preview-6.jpg',
+    'Weekly-preview-7.jpg',
+    'Weekly-preview-8.jpg'
+  ];
+
+  previewImages.forEach(function (imageSrc, i) {
+    var page = document.createElement('div');
+    page.className = 'gallery-page' + (i === 0 ? ' active' : '');
+
+    var img = document.createElement('img');
+    img.src = imageSrc;
+    img.alt = productName + ' preview page ' + (i + 1);
+    img.loading = 'lazy';
+    img.style.width = '100%';
+    img.style.height = 'auto';
+    img.style.maxHeight = '100%';
+    img.style.objectFit = 'contain';
+    img.style.cursor = 'zoom-in';
+
+    // Tap the image to open it larger
+    img.addEventListener('click', function () {
+      window.open(imageSrc, '_blank');
+    });
+
+    page.appendChild(img);
+    galleryViewport.appendChild(page);
+
+    var dot = document.createElement('span');
+
+    if (i === 0) {
+      dot.classList.add('active');
     }
-    currentPage = 0;
-    if (galleryCaption) galleryCaption.textContent = 'Page 1 of ' + PAGE_COUNT;
+
+    dot.addEventListener('click', function (idx) {
+      return function () {
+        goToPage(idx);
+      };
+    }(i));
+
+    galleryDots.appendChild(dot);
+  });
+
+  currentPage = 0;
+
+  if (galleryCaption) {
+    galleryCaption.textContent = 'Page 1 of ' + previewImages.length;
   }
+       }
 
   function goToPage(index) {
     if (!galleryViewport) return;
