@@ -457,7 +457,9 @@ document.querySelectorAll('a[href="checkout.html"]').forEach(function (link) {
   galleryDots.innerHTML = '';
 
   // Real Weekly Planner preview images
-  var previewImages = [
+  
+var previewImages = {
+  'weekly-planner': [
     'Weekly-preview-1.jpg',
     'Weekly-preview-2.jpg',
     'Weekly-preview-3.jpg',
@@ -466,7 +468,60 @@ document.querySelectorAll('a[href="checkout.html"]').forEach(function (link) {
     'Weekly-preview-6.jpg',
     'Weekly-preview-7.jpg',
     'Weekly-preview-8.jpg'
-  ];
+  ],
+  'monthly-planner': [
+    'Monthly-preview-1.jpg',
+    'Monthly-preview-2.jpg',
+    'Monthly-preview-3.jpg',
+    'Monthly-preview-4.jpg',
+    'Monthly-preview-5.jpg',
+    'Monthly-preview-6.jpg',
+    'Monthly-preview-7.jpg',
+    'Monthly-preview-8.jpg'
+  ],
+  'workout-planner': [
+    'Workout-preview-1.jpg',
+    'Workout-preview-2.jpg',
+    'Workout-preview-3.jpg',
+    'Workout-preview-4.jpg',
+    'Workout-preview-5.jpg',
+    'Workout-preview-6.jpg',
+    'Workout-preview-7.jpg',
+    'Workout-preview-8.jpg'
+  ],
+  'habit-tracker': [
+    'Habit-preview-1.jpg',
+    'Habit-preview-2.jpg',
+    'Habit-preview-3.jpg',
+    'Habit-preview-4.jpg',
+    'Habit-preview-5.jpg',
+    'Habit-preview-6.jpg',
+    'Habit-preview-7.jpg',
+    'Habit-preview-8.jpg'
+  ],
+  'budget-planner': [
+    'Budget-preview-1.jpg',
+    'Budget-preview-2.jpg',
+    'Budget-preview-3.jpg',
+    'Budget-preview-4.jpg',
+    'Budget-preview-5.jpg',
+    'Budget-preview-6.jpg',
+    'Budget-preview-7.jpg',
+    'Budget-preview-8.jpg'
+  ],
+  'printable-journal': [
+    'Journal-preview-1.jpg',
+    'Journal-preview-2.jpg',
+    'Journal-preview-3.jpg',
+    'Journal-preview-4.jpg',
+    'Journal-preview-5.jpg',
+    'Journal-preview-6.jpg',
+    'Journal-preview-7.jpg',
+    'Journal-preview-8.jpg'
+  ]
+};
+
+previewImages = previewImages[currentModalId] || previewImages['weekly-planner'];
 
   previewImages.forEach(function (imageSrc, i) {
     var page = document.createElement('div');
