@@ -528,7 +528,8 @@ previewImages = previewImages[currentModalId] || [];
 
     var img = document.createElement('img');
     img.src = imageSrc;
-     img.dataset.previewUrl = new URL(imageSrc, document.baseURI).href;
+    img.dataset.previewUrl = new URL(imageSrc, document.baseURI).href;
+     console.log('Page', i + 1, imageSrc, img.dataset.previewUrl);
     img.alt = productName + ' preview page ' + (i + 1);
     img.loading = 'lazy';
     img.style.width = '100%';
