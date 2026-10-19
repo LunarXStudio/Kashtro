@@ -528,6 +528,7 @@ previewImages = previewImages[currentModalId] || [];
 
     var img = document.createElement('img');
     img.src = imageSrc;
+     img.dataset.previewUrl = new URL(imageSrc, document.baseURI).href;
     img.alt = productName + ' preview page ' + (i + 1);
     img.loading = 'lazy';
     img.style.width = '100%';
@@ -540,7 +541,7 @@ previewImages = previewImages[currentModalId] || [];
      img.addEventListener('click', function (event) {
         event.preventDefault();
         event.stopPropagation();
-        window.open(this.currentSrc || this.src, '_blank');
+        window.open(this.dataset.previewUrl, '_blank');
      });
 
     page.appendChild(img);
