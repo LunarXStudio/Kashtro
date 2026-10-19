@@ -1014,6 +1014,7 @@ body.no-scroll { overflow: hidden; }
   overflow: hidden;
   border: 1px solid var(--line);
 }
+
 .gallery-page {
   position: absolute;
   inset: 0;
@@ -1027,23 +1028,21 @@ body.no-scroll { overflow: hidden; }
   font-family: var(--font-display);
   color: var(--stone);
   text-align: center;
-  padding: var(--space-3);
+  padding: 6px;
+  box-sizing: border-box;
 }
-.gallery-page.active { opacity: 1; }
-.gallery-page .page-lines {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: 10px;
-  width: 60%;
+
+.gallery-page.active {
+  opacity: 1;
 }
-.gallery-page .page-lines span {
-  height: 4px;
-  border-radius: 2px;
-  background: var(--sand-deep);
+
+.gallery-page img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
-.gallery-page .page-lines span:nth-child(2) { width: 80%; }
-.gallery-page .page-lines span:nth-child(3) { width: 55%; }
 .gallery-controls {
   display: flex;
   align-items: center;
