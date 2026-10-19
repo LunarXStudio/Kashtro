@@ -538,7 +538,7 @@ previewImages = previewImages[currentModalId] || [];
 
     // Tap the image to open it larger
     img.addEventListener('click', function () {
-      window.open(imageSrc, '_blank');
+      window.open(img.src, '_blank');
     });
 
     page.appendChild(img);
