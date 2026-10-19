@@ -528,23 +528,12 @@ previewImages = previewImages[currentModalId] || [];
 
     var img = document.createElement('img');
     img.src = imageSrc;
-    img.dataset.previewUrl = new URL(imageSrc, document.baseURI).href;
-     console.log('Page', i + 1, imageSrc, img.dataset.previewUrl);
     img.alt = productName + ' preview page ' + (i + 1);
     img.loading = 'lazy';
     img.style.width = '100%';
     img.style.height = 'auto';
     img.style.maxHeight = '100%';
     img.style.objectFit = 'contain';
-    img.style.cursor = 'zoom-in';
-
-    // Tap the image to open the correct preview
-     img.addEventListener('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        window.open(this.dataset.previewUrl, '_blank');
-        console.log('Preview clicked:', this.dataset.previewUrl);
-     });
 
     page.appendChild(img);
     galleryViewport.appendChild(page);
