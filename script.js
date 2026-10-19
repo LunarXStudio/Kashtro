@@ -542,6 +542,7 @@ previewImages = previewImages[currentModalId] || [];
         event.preventDefault();
         event.stopPropagation();
         window.open(this.dataset.previewUrl, '_blank');
+        console.log('Preview clicked:', this.dataset.previewUrl);
      });
 
     page.appendChild(img);
