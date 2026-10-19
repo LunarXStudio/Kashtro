@@ -536,10 +536,10 @@ previewImages = previewImages[currentModalId] || [];
     img.style.objectFit = 'contain';
     img.style.cursor = 'zoom-in';
 
-    // Tap the image to open it larger
-    img.addEventListener('click', function () {
-      window.open(img.src, '_blank');
-    });
+    // Tap the image to open the correct preview
+     img.addEventListener('click', function () {
+        window.open(new URL(imageSrc, document.baseURI).href, '_blank');
+     });
 
     page.appendChild(img);
     galleryViewport.appendChild(page);
