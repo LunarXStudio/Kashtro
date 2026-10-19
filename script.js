@@ -521,8 +521,7 @@ var previewImages = {
   ]
 };
 
-previewImages = previewImages[currentModalId] || previewImages['weekly-planner'];
-
+previewImages = previewImages[currentModalId] || [];
   previewImages.forEach(function (imageSrc, i) {
     var page = document.createElement('div');
     page.className = 'gallery-page' + (i === 0 ? ' active' : '');
